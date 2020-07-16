@@ -39,7 +39,7 @@ app.get('/ical/:userId', (req, res) => {
 })
 
 // START WHITELIST
-app.use(function (req, res, next) {
+/* app.use(function (req, res, next) {
     var get_ip = require('ipware')().get_ip;
     var whitelist = process.env.IP_WHITELIST.split(",", -1); 
     const ip = get_ip(req).clientIp;
@@ -48,7 +48,7 @@ app.use(function (req, res, next) {
     }
     console.log('BAD IP: ' + ip); 
     return res.send("IP NOT ALLOWED"); 
-});
+}); */ 
 // END WHITELIST
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
