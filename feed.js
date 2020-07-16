@@ -7,7 +7,6 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 const port = process.env.PORT
-const ipfilter = require('express-ipfilter').IpFilter
 const os = require('os');
 
 app.get('/ical/:userId', (req, res) => {
