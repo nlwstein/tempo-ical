@@ -23,13 +23,15 @@ app.get('/ical/:userId', (req, res) => {
             // prodId: '//superman-industries.com//ical-generator//EN',
             events: response.data.results.map(function (plan) {
                 const ticket = plan.planItem.self.replace(process.env.REST_API_URL_FRAGMENT, "");
+                const url = process.env.GUI_URL_FRAGMENT + ticket;
                 return {
                     start: moment(plan.startDate),
                     end: moment(plan.endDate),
                     timestamp: moment(),
                     allDay: true,
                     summary: ticket + (plan.description ? " | " + plan.description : ""),
-                    url: process.env.GUI_URL_FRAGMENT + ticket,
+                    url: url,
+                    description: (plan.description ? " | " + plan.description : "") + url,
                     organizer: 'Tempo Planner iCal <tpi@trellis.co>'
                 }
             })
