@@ -20,6 +20,7 @@ app.get('/ical/:userId', (req, res) => {
     }).then(function (response) {
         var calendar = ical({
             domain: 'trellis.co',
+            name: 'Tempo Planner Feed'
             // prodId: '//superman-industries.com//ical-generator//EN',
             events: response.data.results.map(function (plan) {
                 const ticket = plan.planItem.self.replace(process.env.REST_API_URL_FRAGMENT, "");
