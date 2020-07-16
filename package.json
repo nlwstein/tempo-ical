@@ -8,6 +8,7 @@
     "datejs": "^1.0.0-rc3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-ipfilter": "^1.1.2",
     "ical-generator": "^1.11.0",
     "ip-whitelist": "^1.2.2",
     "moment": "^2.27.0"
@@ -18,7 +19,7 @@
     "start": "node feed.js"
   },
   "author": "",
-  "license": "ISC", 
+  "license": "ISC",
   "engines": {
     "node": "14.x"
   }

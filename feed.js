@@ -7,6 +7,7 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 const port = process.env.PORT
+const ipfilter = require('express-ipfilter').IpFilter
 
 app.get('/ical/:userId', (req, res) => {
     const from = Date.today().addMonths(-1).toString("yyyy-MM-dd");
@@ -37,8 +38,20 @@ app.get('/ical/:userId', (req, res) => {
     });
 })
 
-const ipWhitelist = require('ip-whitelist');
-app.use(ipWhitelist(ipWhitelist.array(process.env.IP_WHITELIST.split(","))));
+// START WHITELIST
+let whitelist_ips = process.env.IP_WHITELIST.split(",");
+let clientIp = function(req, res) {
+  return req.headers['x-forwarded-for'] ? (req.headers['x-forwarded-for']).split(',')[0] : ""
+}
+app.use(
+  ipfilter({
+    id: clientIp,
+    forbidden: 'You are not authorized to access this page.',
+    strict: false,
+    filter: whitelist_ips,
+  })
+);
+// END WHITELIST
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
 
