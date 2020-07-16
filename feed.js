@@ -39,18 +39,16 @@ app.get('/ical/:userId', (req, res) => {
 })
 
 // START WHITELIST
-let whitelist_ips = process.env.IP_WHITELIST.split(",");
-let clientIp = function(req, res) {
-  return req.headers['x-forwarded-for'] ? (req.headers['x-forwarded-for']).split(',')[0] : ""
-}
-app.use(
-  ipfilter({
-    id: clientIp,
-    forbidden: 'You are not authorized to access this page.',
-    strict: false,
-    filter: whitelist_ips,
-  })
-);
+app.use(function (req, res, next) {
+    var get_ip = require('ipware')().get_ip;
+    var whitelist = process.env.IP_WHITELIST.split(",", -1); 
+    const ip = get_ip(req).clientIp;
+    if (whitelist.includes(ip)) {
+        return next();
+    }
+    console.log('BAD IP: ' + ip); 
+    return res.send("IP NOT ALLOWED"); 
+});
 // END WHITELIST
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
