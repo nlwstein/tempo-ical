@@ -1,0 +1,20 @@
+{
+  "name": "tempo-ical",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "datejs": "^1.0.0-rc3",
+    "express": "^4.17.1",
+    "ical-generator": "^1.11.0",
+    "ip-whitelist": "^1.2.2",
+    "moment": "^2.27.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
