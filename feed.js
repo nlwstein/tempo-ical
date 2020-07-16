@@ -27,6 +27,7 @@ app.get('/ical/:userId', (req, res) => {
                     start: moment(plan.startDate),
                     end: moment(plan.endDate),
                     timestamp: moment(),
+                    allDay: true,
                     summary: ticket + " | " + plan.description,
                     url: process.env.GUI_URL_FRAGMENT + ticket,
                     organizer: 'Tempo Planner iCal <tpi@trellis.co>'
