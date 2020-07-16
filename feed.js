@@ -3,7 +3,7 @@ const moment = require('moment');
 const axios = require('axios'); 
 require('datejs');
 const TEMPO_TOKEN = process.env.TEMPO_TOKEN;
-
+require('dotenv').config()
 const express = require('express')
 const app = express()
 const port = process.env.PORT
