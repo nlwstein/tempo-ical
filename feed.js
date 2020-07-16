@@ -34,7 +34,7 @@ app.get('/ical/:userId', (req, res) => {
                 }
             })
         }).toString();
-        
+        res.type("text/calendar")
         res.send(calendar); 
     });
 })
