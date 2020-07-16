@@ -8,6 +8,7 @@ const express = require('express')
 const app = express()
 const port = process.env.PORT
 const ipfilter = require('express-ipfilter').IpFilter
+const os = require('os');
 
 app.get('/ical/:userId', (req, res) => {
     const from = Date.today().addMonths(-1).toString("yyyy-MM-dd");
@@ -32,7 +33,7 @@ app.get('/ical/:userId', (req, res) => {
                     allDay: true,
                     summary: ticket + (plan.description ? " | " + plan.description : ""),
                     url: url,
-                    description: (plan.description ? " | " + plan.description : "") + url,
+                    description: (plan.description ? plan.description + os.EOL : "") + url,
                     organizer: 'Tempo Planner iCal <tpi@trellis.co>'
                 }
             })
