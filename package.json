@@ -12,7 +12,7 @@
     "ical-generator": "^1.11.0",
     "ip-whitelist": "^1.2.2",
     "ipware": "^2.0.0",
-    "moment": "^2.27.0"
+    "moment": "^2.29.2"
   },
   "devDependencies": {},
   "scripts": {
